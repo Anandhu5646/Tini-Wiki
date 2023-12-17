@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
-var salt = bcrypt.genSaltSync(10);
+// var salt = bcrypt.genSaltSync(10);
 const adminAuthController = {
   postAdminLogin: async (req, res) => {
     try {
@@ -14,15 +14,15 @@ const adminAuthController = {
         return res.json({ error: true, message1: "You have no admin access" });
       }
       
-    const validPassword = await bcrypt.compare(password , admin.password)
-    if(!validPassword){
-      return res.json({message: "Incorrect email or password"})
-    }
+      if (password !== admin.password) {
+        return res.json({ error: true, message2: "Wrong password" });
+      }
+      
       const token = jwt.sign(
         {
           id: admin._id,
         },
-        process.env.JWT_KEY
+        'thisismysecretkey'
       );
       
       return res
@@ -56,14 +56,14 @@ const adminAuthController = {
   checkAdminLoggedIn: async (req, res) => {
     try {
       const token = req.cookies.adminToken;
-      
+      console.log(token,'this is token');
       if (!token) {
         return res.json({ loggedIn: false, message: "no token" });
       }
       
-      const verifiedJWT = jwt.verify(token, process.env.JWT_KEY);
+      const verifiedJWT = jwt.verify(token, 'thisismysecretkey');
       
-      return res.json({ name: verifiedJWT.name, loggedIn: true });
+      return res.json({ loggedIn: true });
     } catch (error) {
       res.json({ loggedIn: false, error });
     }
