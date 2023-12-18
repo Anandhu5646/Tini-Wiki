@@ -1,6 +1,5 @@
 
-server/node_modules
-server/.env
+
+
 /node_modules
-wiki-client/node_modules
-.netlify
+
