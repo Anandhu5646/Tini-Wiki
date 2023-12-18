@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ApexCharts from "react-apexcharts";
 import "./Dashboard.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AdminDashboard = () => {
   const [count, setCount] = useState(0);
@@ -97,10 +100,7 @@ const AdminDashboard = () => {
     try {
       const response = await axios.get("/admin/");
 
-      console.log(response.data, "rrrrrrrrrrrr");
       setCount(response.data.totalSearches);
-
-      // Check if mostSearchedTerm is defined
       if (
         response.data.mostSearchedTerm &&
         response.data.mostSearchedTerm.length > 0
@@ -140,9 +140,11 @@ const handleLogout=async ()=>{
        
         const response = await axios.post("/admin/logout");
         if (response.data.success) {
-    
-          console.log("Logout successful");
-          window.location.href = "/";
+          toast.success("Logout successfully!", {
+            autoClose: 3000,
+            position: toast.POSITION.TOP_CENTER
+          });
+          window.location.href = "/admin/";
         } else {
           console.error("Logout failed:", response.data.error);
         }
@@ -184,6 +186,7 @@ const handleLogout=async ()=>{
           ))}
         </div>
       </div>
+     
     </div>
   );
 };

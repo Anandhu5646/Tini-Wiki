@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import AdminRoute from "./routes/AdminRoute";
 
 
+
 function App() {
 
   axios.defaults.baseURL = "http://localhost:2000";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/*" element={<UserRoute />} />
           <Route path="/admin/*" element={<AdminRoute/>}/>
         </Routes>
+       
      </div>
      
       

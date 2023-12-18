@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.get('/login')
 
-// router.post("/login", adminAuth.postAdminLogin)
-// router.post("/logout",adminAuth.postAdminLogout)
-// router.get("/check", adminAuth.checkAdminLoggedIn)
-router.get("/", adminControl.dashboard)
+router.post("/login", adminAuth.postAdminLogin)
+router.post("/logout",adminAuth.postAdminLogout)
+router.get("/check", adminAuth.checkAdminLoggedIn)
+router.get("/",verifyAdmin, adminControl.dashboard)
 
 export default router
