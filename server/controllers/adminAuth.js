@@ -22,7 +22,7 @@ const adminAuthController = {
 //         {
 //           id: admin._id,
 //         },
-//         'thisismysecretkey'
+//         process.env.SECRECT_KEY
 //       );
       
 //       return res
@@ -62,7 +62,7 @@ const adminAuthController = {
 //         return res.json({ loggedIn: false, message: "no token" });
 //       }
         
-//       const verifiedJWT = jwt.verify(token, 'thisismysecretkey');
+//       const verifiedJWT = jwt.verify(token, process.env.SECRECT_KEY);
       
 //       return res.json({ loggedIn: true });
 //     } catch (error) {

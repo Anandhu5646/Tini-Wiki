@@ -6,7 +6,7 @@ const verifyAdmin = async (req, res, next) => {
     if (!token) {
       return res.json({ loggedIn: false, message: "no token" });
     }
-    const verifiedJWT = jwt.verify(token, "thisismysecretkey");
+    const verifiedJWT = jwt.verify(token, process.env.SECRECT_KEY);
     req.admin = verifiedJWT;
     next();
   } catch (error) {
