@@ -8,11 +8,12 @@ import AdminRoute from "./routes/AdminRoute";
 
 function App() {
 
-  axios.defaults.baseURL = "http://localhost:2000";
+  // axios.defaults.baseURL = "http://localhost:2000";
+  axios.defaults.baseURL="https://tiniwiki.kkweb.online"
   axios.defaults.withCredentials = true;
   axios.defaults.headers={"Content-Type":"application/json"}
   
-  const { loading } = useSelector((state) => state); 
+ 
   return (
     
      <div className="App">
