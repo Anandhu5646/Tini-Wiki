@@ -1,0 +1,45 @@
+/* Add this to your existing CSS file or create a new one */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  div {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  select {
+    font-size: 14px;
+    padding: 5px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
