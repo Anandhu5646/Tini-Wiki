@@ -30,7 +30,7 @@ const adminAuthController = {
           httpOnly: true,
           maxAge: 1000 * 60 * 60 * 24 * 7,
           secure: true,
-          sameSite: "Lax",
+          sameSite: "none",
         })
         .json({ error: false, success: true });
     } catch (error) {
