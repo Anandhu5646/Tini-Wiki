@@ -12,6 +12,14 @@ function SearchPage() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    
+    const storedSearchTerm = localStorage.getItem("searchTerm");
+    if (storedSearchTerm) {
+      setSearchTerm(storedSearchTerm);
+    }
+  }, []);
+
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
@@ -19,6 +27,7 @@ function SearchPage() {
       const response = await axios.get(`/search/${searchTerm}`);
       setResult(response.data.query.search);
       setSearchInfo(response.data.query.searchinfo);
+      localStorage.setItem("searchTerm", searchTerm);
     } catch (error) {
       console.log(error);
       console.error("Error in handleSearch", error);
@@ -27,6 +36,9 @@ function SearchPage() {
  
   const handleReadMore = (slug) => {
     navigate(`/read/${encodeURIComponent(slug)}`, { state: { searchTerm: searchTerm} });
+  };
+  const handleClearSearch = () => {
+    setSearchTerm("");
   };
   return (
     <div>
@@ -44,6 +56,15 @@ function SearchPage() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          {searchTerm && (
+            <button
+              type="button"
+              className="clear-icon"
+              onClick={handleClearSearch}
+            >
+              x
+            </button>
+          )}
         </form>
 
         {searchInfo.totalhits ? (
