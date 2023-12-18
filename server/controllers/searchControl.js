@@ -47,7 +47,43 @@ const { searchTerm } = req.query;
         console.error('Something went wrong...', error);
         res.status(500).json({ error: 'Internal Server Error' });
       } 
-  },  
+  }, 
+  
+  mostSearchedKeyword:async(req,res)=>{
+    try {
+      const order = req.params.order.toLowerCase();
+    
+      if (order !== 'asc' && order !== 'desc') {
+        return res.status(400).json({ error: 'Invalid order parameter' });
+      }
+
+      const mostSearchedKeywords = await searchHistoryModel.aggregate([
+        {
+          $group: {
+            _id: '$searchTerm',
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $sort: {
+            count: order === 'asc' ? 1 : -1,
+          },
+        },
+        {
+          $project: {
+            searchTerm: '$_id',
+            count: 1,
+            _id: 0,
+          },
+        },
+      ]);
+  console.log(mostSearchedKeywords,'wwwwwwwwwwwwwwwwwwww');
+      res.json(mostSearchedKeywords);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 };  
 
 export default searchControl

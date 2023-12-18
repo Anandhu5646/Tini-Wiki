@@ -27,7 +27,7 @@ app.use('/admin',adminRouter )
 
 db();
 
-const PORT = 2000
+let PORT = 2000
 app.listen(PORT,()=>console.log('server is running on http://localhost:2000'))
 
 export { app }    
